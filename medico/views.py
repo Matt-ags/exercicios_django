@@ -17,4 +17,39 @@ def deletar_especialidade(request, id):
     usuario.delete()
     return redirect('/home/')
 
+def add_medico(request):
+    if request.method == "POST":
+        nome = request.POST.get('nome')
+        endereco = request.POST.get('endereco')
+        telefone = request.POST.get('telefone')
+        email = request.POST.get('email')
+        data_nascimento = request.POST.get('data_nascimento')
+        crm = request.POST.get('crm')
+        id_especialidade = request.POST.get('id_especialidade')
+
+        especialidade = ESPECIALIDADE.objects.get(pk=id_especialidade)
+
+        user = MEDICO(
+            nome=nome,
+            endereco=endereco,
+            telefone=telefone,
+            email=email,
+            data_nascimento=data_nascimento,
+            crm=crm,
+            id_especialidade=especialidade
+        )
+        user.save()
+        return redirect('/home/')
+
+    medicos = MEDICO.objects.all() 
+    especialidades = ESPECIALIDADE.objects.all() 
+    # especialidades = ESPECIALIDADE.objects.all()
+
+    
+    return render(request, 'adicionar_medico.html', {'medicos': medicos, 'especialidades':especialidades})
+        
+
+def add_especialidade(request):
+    pass
+
 # Create your views here.

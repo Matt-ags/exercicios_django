@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="mb-4">
+            <h4>Cadastrar novo médico:</h4>
+            <form action="/add_medico/" method="POST" class="row g-3">
+                {% csrf_token %}
+                
+                <div class="col-md-8">
+                    <input type="text" name="nome" class="form-control" placeholder="Nome do médico" required>
+                </div>
+
+                <div class="col-md-8">
+                    <input type="text" name="endereco" class="form-control" placeholder="Endereço do médico" required>
+                </div>
+
+                <div class="col-md-8">
+                    <input type="text" name="telefone" class="form-control" placeholder="Telefone do médico" required>
+                </div>
+
+                <div class="col-md-8">
+                    <input type="email" name="email" class="form-control" placeholder="E-mail do médico" required>
+                </div>
+
+                <div class="col-md-8">
+                    <input type="date" name="data_nascimento" class="form-control" placeholder="Data de nascimento" required>
+                </div>
+
+                <div class="col-md-8">
+                    <input type="text" name="crm" class="form-control" placeholder="CRM do médico" required>
+                </div>
+
+                <div class="col-md-8">
+                    <select name="id_especialidade" class="form-select" required>
+                        <option value="">Selecione a especialidade</option>
+                        {% for especialidade in especialidades %}
+                            <option value="{{ especialidade.id }}">{{ especialidade.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success w-100">Salvar</button>
+                </div>
+            </form>
+        </div>
+</body>
+</html>

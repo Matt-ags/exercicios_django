@@ -7,7 +7,7 @@
 </head>
 <body>
         <div>
-            <h4>Usuários cadastrados: <button type="button">Adicionar</button></h4>
+            <h4>Usuários cadastrados: <a href="{% url 'add_medico'%}" class="btn btn-warning btn-sm">Adicionar Médico</a></h4>
             {% if medicos %}
                 <ul class="list-group">
                     {% for medico in medicos %}
