@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+        <div>
+            <h4>Usuários cadastrados: <button type="button">Adicionar</button></h4>
+            {% if medicos %}
+                <ul class="list-group">
+                    {% for medico in medicos %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ medico.nome }}
+
+                            <div class="list-group-item justify-content-between align-items-center">
+                                <form action="{% url 'deletar_usuario' medico.id_medico %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                                </form>
+                            </div>
+                            
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info mt-3">Nenhum usuário ainda.</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <h4>Especialidades cadastradas: <button type="button">Adicionar</button></h4>
+            {% if especialidades %}
+                <ul class="list-group">
+                    {% for especialidade in especialidades %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ especialidade.nome }}
+
+                            <div class="list-group-item justify-content-between align-items-center">
+                                <form action="{% url 'deletar_especialidade' especialidade.id_especialidade %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Remover Especialidade</button>
+                                </form>
+                            </div>
+                            
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info mt-3">Nenhum usuário ainda.</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

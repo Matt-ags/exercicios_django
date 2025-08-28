@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from medico import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', views.home, name='home'),
+    path('deletar/<int:id>/', views.deletar_usuario, name='deletar_usuario'),
+    path('deletar/<int:id>/', views.deletar_especialidade, name='deletar_especialidade'),
 ]
