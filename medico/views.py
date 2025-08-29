@@ -17,6 +17,19 @@ def deletar_especialidade(request, id):
     usuario.delete()
     return redirect('/home/')
 
+def editar_especialidade(request, id):
+    usuario = get_object_or_404(ESPECIALIDADE, id_especialidade=id)
+    if request.method == "POST":
+        novo_nome = request.POST.get('nome')
+        novo_descricao = request.POST.get('descricao')
+        usuario.nome = novo_nome
+        usuario.descricao = novo_descricao
+        usuario.save()
+        return redirect('/home/')
+    
+    return render(request, 'editar_especialidade.html', {'usuario': usuario})
+
+
 def add_medico(request):
     if request.method == "POST":
         nome = request.POST.get('nome')
@@ -57,7 +70,7 @@ def add_especialidade(request):
             nome=nome,
             descricao=descricao,
         )
-        
+
         especialidade.save()
         return redirect('/home/')
 
@@ -68,4 +81,3 @@ def add_especialidade(request):
     
     return render(request, 'adicionar_especialidade.html', {'medicos': medicos, 'especialidades':especialidades})
 
-# Create your views here.

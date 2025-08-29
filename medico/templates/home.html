@@ -38,6 +38,7 @@
                             {{ especialidade.nome }}
 
                             <div class="list-group-item justify-content-between align-items-center">
+                                <a href="{% url 'editar_especialidade' especialidade.id_especialidade %}" class="btn btn-warning btn-sm">Editar</a>
                                 <form action="{% url 'deletar_especialidade' especialidade.id_especialidade %}" method="post" class="d-inline">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger btn-sm">Remover Especialidade</button>

@@ -22,7 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),
     path('deletar/<int:id>/', views.deletar_usuario, name='deletar_usuario'),
-    path('deletar/<int:id>/', views.deletar_especialidade, name='deletar_especialidade'),
+    path('deletar_especialidade/<int:id>/', views.deletar_especialidade, name='deletar_especialidade'),
     path('add_medico/', views.add_medico, name='add_medico'),
     path('add_especialidade/', views.add_especialidade, name='add_especialidade'),
+    path('editar_especialidade/<int:id>/', views.editar_especialidade, name='editar_especialidade'),
+    path('editar_medico/<int:id>/', views.editar_medico, name='editar_medico'),
 ]
