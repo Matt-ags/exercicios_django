@@ -30,7 +30,7 @@
         </div>
 
         <div>
-            <h4>Especialidades cadastradas: <button type="button">Adicionar</button></h4>
+            <h4>Especialidades cadastradas: <a href="{% url 'add_especialidade'%}" class="btn btn-warning btn-sm">Adicionar Especialidade</a></h4>
             {% if especialidades %}
                 <ul class="list-group">
                     {% for especialidade in especialidades %}

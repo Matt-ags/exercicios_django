@@ -49,6 +49,23 @@ def add_medico(request):
         
 
 def add_especialidade(request):
-    pass
+    if request.method == "POST":
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descricao')
+
+        especialidade = ESPECIALIDADE(
+            nome=nome,
+            descricao=descricao,
+        )
+        
+        especialidade.save()
+        return redirect('/home/')
+
+    medicos = MEDICO.objects.all() 
+    especialidades = ESPECIALIDADE.objects.all() 
+    # especialidades = ESPECIALIDADE.objects.all()
+
+    
+    return render(request, 'adicionar_especialidade.html', {'medicos': medicos, 'especialidades':especialidades})
 
 # Create your views here.
