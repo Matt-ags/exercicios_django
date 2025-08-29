@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Adicionar Especialidade</title>
 </head>
 <body>
         <div class="mb-4">
@@ -39,7 +39,7 @@
                     <select name="id_especialidade" class="form-select" required>
                         <option value="">Selecione a especialidade</option>
                         {% for especialidade in especialidades %}
-                            <option value="{{ especialidade.id }}">{{ especialidade.nome }}</option>
+                            <option value="{{ especialidade.id_especialidade }}">{{ especialidade.nome }}</option>
                         {% endfor %}
                     </select>
                 </div>

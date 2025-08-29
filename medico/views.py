@@ -8,12 +8,12 @@ def home(request):
 
     
 def deletar_usuario(request, id):
-    usuario = get_object_or_404(MEDICO, id=id)
+    usuario = get_object_or_404(MEDICO, id_medico=id)
     usuario.delete()
     return redirect('/home/')
 
 def deletar_especialidade(request, id):
-    usuario = get_object_or_404(ESPECIALIDADE, id=id)
+    usuario = get_object_or_404(ESPECIALIDADE, id_especialidade=id)
     usuario.delete()
     return redirect('/home/')
 
@@ -26,8 +26,7 @@ def add_medico(request):
         data_nascimento = request.POST.get('data_nascimento')
         crm = request.POST.get('crm')
         id_especialidade = request.POST.get('id_especialidade')
-
-        especialidade = ESPECIALIDADE.objects.get(pk=id_especialidade)
+        especialidade = ESPECIALIDADE.objects.get(id_especialidade=id_especialidade)
 
         user = MEDICO(
             nome=nome,
