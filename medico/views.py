@@ -29,6 +29,11 @@ def editar_especialidade(request, id):
     
     return render(request, 'editar_especialidade.html', {'usuario': usuario})
 
+def editar_medico(request, id):
+    usuario_medico = get_object_or_404(MEDICO, id_medico=id)
+    
+    return render(request, 'editar_medico.html', {'usuario': usuario_medico})
+
 
 def add_medico(request):
     if request.method == "POST":
