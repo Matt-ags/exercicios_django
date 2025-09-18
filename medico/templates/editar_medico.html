@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Médico</title>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Editar Médico</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do(a) médico(a): </label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{ usuario.nome }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone do(a) médico(a): </label>
+                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ usuario.telefone }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email do(a) médico(a): </label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="data_nascimento" class="form-label">Data de nascimento do(a) médico(a): </label>
+                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ usuario.data_nascimento }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="crm" class="form-label">CRM do(a) médico(a): </label>
+                <input type="text" class="form-control" id="crm" name="crm" value="{{ usuario.crm }}" required>
+            </div>
+            <div class="col-md-8">
+                    <select name="id_especialidade" class="form-select" required>
+                        <option value="">Selecione a especialidade</option>
+                        {% for especialidade in especialidades %}
+                            <option value="{{ especialidade.id_especialidade }}">{{ especialidade.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/home/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+</html>
