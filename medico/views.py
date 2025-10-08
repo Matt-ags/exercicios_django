@@ -104,3 +104,17 @@ def add_especialidade(request):
     
     return render(request, 'adicionar_especialidade.html', {'medicos': medicos, 'especialidades':especialidades})
 
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
+def registrar_usuario(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login/')
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'registration/register.html', {'form': form})
+
