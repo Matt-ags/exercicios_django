@@ -6,6 +6,8 @@ class ESPECIALIDADE(models.Model):
     id_especialidade = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     descricao = models.TextField() 
+    def __str__(self):
+        return self.nome
 
 class MEDICO(models.Model):
     id_medico = models.AutoField(primary_key=True)

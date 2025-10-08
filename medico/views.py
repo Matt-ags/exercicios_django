@@ -30,10 +30,28 @@ def editar_especialidade(request, id):
     return render(request, 'editar_especialidade.html', {'usuario': usuario})
 
 def editar_medico(request, id):
-    usuario_medico = get_object_or_404(MEDICO, id_medico=id)
-    
-    return render(request, 'editar_medico.html', {'usuario': usuario_medico})
+    medico = get_object_or_404(MEDICO, id_medico=id)
+    especialidades = ESPECIALIDADE.objects.all()
 
+    if request.method == "POST":
+        medico.nome = request.POST.get('nome')
+        medico.endereco = request.POST.get('endereco')
+        medico.telefone = request.POST.get('telefone')
+        medico.email = request.POST.get('email')
+        medico.data_nascimento = request.POST.get('data_nascimento')
+        medico.crm = request.POST.get('crm')
+
+        id_especialidade = request.POST.get('id_especialidade')
+        if id_especialidade:
+            medico.id_especialidade = ESPECIALIDADE.objects.get(id_especialidade=id_especialidade)
+
+        medico.save()
+        return redirect('/home/')  # redireciona após salvar
+
+    return render(request, 'editar_medico.html', {
+        'medico': medico,
+        'especialidades': especialidades
+    })
 
 def add_medico(request):
     if request.method == "POST":
